@@ -1,0 +1,202 @@
+<div class="d-flex justify-content-between align-items-center mb-3 no-print">
+  <div>
+    <h4 class="fw-bold mb-0"> Facturas</h4>
+  </div>
+  @if (vistaActual === 'lista') {
+    <button class="btn btn-primary" (click)="nuevaFactura()">
+      <i class="bi bi-plus-circle me-1"></i> Nueva Factura
+    </button>
+  } @else {
+    <button class="btn btn-outline-secondary" (click)="onCancelado()">
+      <i class="bi bi-arrow-left me-1"></i> Volver a lista
+    </button>
+  }
+</div>
+
+@if (vistaActual === 'formulario') {
+  <app-nueva-factura
+    [facturaEditar]="facturaEditar"
+    [totalFacturas]="facturas.length"
+    (guardado)="onGuardado()"
+    (cancelado)="onCancelado()">
+  </app-nueva-factura>
+}
+
+@if (vistaActual === 'lista') {
+<div class="card border-0 shadow-sm mb-3 no-print">
+  <div class="card-body py-2 px-3 d-flex flex-wrap align-items-center gap-2">
+    <button class="btn btn-sm btn-outline-secondary" (click)="imprimirTodas()">
+      <i class="bi bi-printer me-1"></i> Imprimir tabla
+    </button>
+    <button class="btn btn-sm btn-outline-danger" (click)="exportarPDFGeneral()">
+      <i class="bi bi-file-earmark-pdf me-1"></i> Descargar en PDF
+    </button>
+    <button class="btn btn-sm btn-outline-primary" (click)="abrirPDFGeneral()">
+      <i class="bi bi-eye me-1"></i> Ver PDF
+    </button>
+    <button class="btn btn-sm btn-outline-success" (click)="exportarCSV()">
+      <i class="bi bi-file-earmark-excel me-1"></i> Descargar en .xlxs
+    </button>
+  </div>
+</div>
+  <div class="card shadow-sm" id="tabla-facturas">
+    <div class="card-body p-0">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th>N° Factura</th>
+            <th>Cédula / RUC</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th class="text-end">Subtotal</th>
+            <th class="text-end">IVA 15%</th>
+            <th class="text-end">Total</th>
+            <th>Estado</th>
+            <th class="text-center no-print">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (f of facturas; track f.id) {
+            <tr>
+              <td><code>{{ f.numeroFactura }}</code></td>
+              <td>{{ f.cedulaRuc }}</td>
+              <td>{{ f.nombreCliente }}</td>
+              <td>{{ f.fecha | date:'dd/MM/yyyy' }}</td>
+              <td class="text-end">$ {{ f.subtotal | number:'1.2-2' }}</td>
+              <td class="text-end">$ {{ f.iva      | number:'1.2-2' }}</td>
+              <td class="text-end fw-bold text-primary">$ {{ f.total | number:'1.2-2' }}</td>
+              <td>
+                <span [class]="badgeClase(f.estado)">{{ f.estado }}</span>
+              </td>
+              <td class="text-center no-print">
+                <button class="btn btn-sm btn-outline-info me-1" (click)="verDetalle(f)" title="Ver / Imprimir">Ver</button>
+                <button class="btn btn-sm btn-outline-warning me-1" (click)="editarFactura(f)" title="Editar">Editar </button>
+                <button class="btn btn-sm btn-outline-danger" (click)="eliminar(f.id!)" title="Eliminar">Eliminar </button>
+              </td>
+            </tr>
+
+          } @empty {
+            <tr>
+              <td colspan="9" class="text-center text-muted py-5">
+                <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+                No hay facturas registradas aún
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+}
+
+
+<div class="modal fade" id="modalDetalle" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header no-print">
+        <h5 class="modal-title fw-bold">
+          <i class="bi bi-file-earmark-richtext text-primary"></i> Detalle de Factura
+        </h5>
+        <button type="button" class="btn-close" (click)="cerrarDetalle()"></button>
+      </div>
+
+      <div class="modal-body pb-0 no-print">
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-secondary" (click)="imprimirIndividual()">
+            <i class="bi bi-printer me-1"></i> Imprimir
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="descargarPDFIndividual()">
+            <i class="bi bi-file-earmark-pdf me-1"></i> Descargar PDF
+          </button>
+          <button class="btn btn-sm btn-outline-primary" (click)="abrirPDFIndividual()">
+            <i class="bi bi-eye me-1"></i> Ver PDF
+          </button>
+        </div>
+      </div>
+
+      @if (facturaVista) {
+        <div class="modal-body pt-2" id="zona-impresion">
+          <div class="factura-hoja border rounded p-4">
+
+            <div class="row border-bottom pb-3 mb-3">
+              <div class="col-7">
+                <h4 class="fw-bold text-primary mb-0">Tarea7 - Semana 7</h4>
+                <small class="text-muted d-block">1759026535555</small>
+                <small class="text-muted d-block">Santo Domingo – Ecuador | Tel: 02-123-4567</small>
+              </div>
+              <div class="col-5 text-end">
+                <div class="border border-primary rounded p-2 d-inline-block text-start">
+                  <div class="fw-bold text-primary">FACTURA</div>
+                  <div class="fw-bold">{{ facturaVista.numeroFactura }}</div>
+                  <small class="text-muted">{{ facturaVista.fecha | date:'dd/MM/yyyy' }}</small><br>
+                  <span [class]="badgeClase(facturaVista.estado)" class="mt-1 d-inline-block">
+                    {{ facturaVista.estado }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-light rounded p-3 mb-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="mb-1"><strong>Cédula / RUC:</strong> {{ facturaVista.cedulaRuc }}</p>
+                  <p class="mb-1"><strong>Cliente:</strong> {{ facturaVista.nombreCliente }}</p>
+                </div>
+                <div class="col-md-6">
+                  @if (facturaVista.direccion) {
+                    <p class="mb-1"><strong>Dirección:</strong> {{ facturaVista.direccion }}</p>
+                  }
+                  @if (facturaVista.telefono) {
+                    <p class="mb-1"><strong>Teléfono:</strong> {{ facturaVista.telefono }}</p>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <table class="table table-bordered mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th>Descripción</th>
+                  <th class="text-end" style="width:140px">Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ facturaVista.descripcion ?? 'Servicio / Producto' }}</td>
+                  <td class="text-end">$ {{ facturaVista.subtotal | number:'1.2-2' }}</td>
+                </tr>
+              </tbody>
+              <tfoot class="table-group-divider">
+                <tr>
+                  <td class="text-end text-muted">Subtotal:</td>
+                  <td class="text-end">$ {{ facturaVista.subtotal | number:'1.2-2' }}</td>
+                </tr>
+                <tr>
+                  <td class="text-end text-muted">IVA 15%:</td>
+                  <td class="text-end">$ {{ facturaVista.iva | number:'1.2-2' }}</td>
+                </tr>
+                <tr class="table-primary">
+                  <td class="text-end fw-bold fs-6">TOTAL:</td>
+                  <td class="text-end fw-bold fs-6 text-primary">
+                    $ {{ facturaVista.total | number:'1.2-2' }}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <p class="text-center text-muted small mt-3 mb-0">
+              Vista de factura individual
+            </p>
+          </div>
+        </div>
+      }
+
+      <div class="modal-footer no-print">
+        <button class="btn btn-secondary" (click)="cerrarDetalle()">
+          <i class="bi bi-x-circle me-1"></i> Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+/* Transición suave al aparecer el componente */
+:host {
+  display: block;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Resaltar campos requeridos */
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(26, 86, 219, 0.2);
+  border-color: #1a56db;
+}

@@ -1,0 +1,182 @@
+<div class="card shadow-sm border-0 mb-4">
+
+  <!-- Header tarjeta -->
+  <div class="card-header d-flex align-items-center gap-2"
+       [class.bg-primary]="!modoEdicion"
+       [class.bg-warning]="modoEdicion">
+    <i class="bi" [class.bi-file-earmark-plus]="!modoEdicion"
+                  [class.bi-pencil-square]="modoEdicion"
+       style="font-size:1.3rem"></i>
+    <h5 class="mb-0 fw-bold text-white"
+        [class.text-dark]="modoEdicion">
+      {{ modoEdicion ? 'Editar Factura' : 'Nueva Factura' }}
+    </h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row g-3">
+
+      <!-- ───── Fila 1: número, fecha, estado ───── -->
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">N° Factura</label>
+        <div class="input-group">
+          <input type="text" class="form-control "
+                 [(ngModel)]="form.numeroFactura"
+                  disabled>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">
+          Fecha de Emisión <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <input type="date" class="form-control" [(ngModel)]="form.fecha" disabled>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">Estado</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-toggle-on"></i></span>
+          <select class="form-select" [(ngModel)]="form.estado">
+            <option value="ACTIVA">ACTIVA</option>
+            <option value="PAGADA">PAGADA</option>
+            <option value="ANULADA">ANULADA</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-12"><hr class="my-1 text-muted"></div>
+
+      <!-- ───── Fila 2: cédula/RUC y nombre ───── -->
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">
+          Cédula / RUC <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person-vcard"></i></span>
+          <input type="text" class="form-control"
+                 [class.is-invalid]="errorCedulaRuc"
+                 [(ngModel)]="form.cedulaRuc"
+                 (blur)="validarCedulaRuc()"
+                 maxlength="13"
+                 placeholder="10 cédula  /  13 RUC" >
+          @if (errorCedulaRuc) {
+            <div class="invalid-feedback">{{ errorCedulaRuc }}</div>
+       P   }
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <label class="form-label fw-semibold">
+          Nombre / Razón Social <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-building"></i></span>
+          <input type="text" class="form-control"
+                 [(ngModel)]="form.nombreCliente"
+                 placeholder="Nombre completo o razón social">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Dirección</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+          <input type="text" class="form-control"
+                 [(ngModel)]="form.direccion"
+                 placeholder="Dirección del cliente">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Teléfono</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+          <input type="text" class="form-control" 
+                 [(ngModel)]="form.telefono"
+                 placeholder="0912345678" maxlength="10">
+        </div>
+      </div>
+
+      <!-- ───── Descripción ───── -->
+      <div class="col-12">
+        <label class="form-label fw-semibold">Descripción / Detalle</label>
+        <textarea class="form-control" rows="3"
+                  [(ngModel)]="form.descripcion"
+                  placeholder="Detalle del servicio o producto facturado..."></textarea>
+      </div>
+
+      <div class="col-12"><hr class="my-1 text-muted"></div>
+
+      <!-- ───── Valores ───── -->
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">
+          Subtotal (USD) <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <span class="input-group-text fw-bold">$</span>
+          <input type="number" class="form-control"
+                 [(ngModel)]="form.subtotal"
+                 (ngModelChange)="calcularTotales()"
+                 min="0" step="0.01" placeholder="0.00">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">IVA (%)</label>
+        <div class="input-group">
+          <input type="number" class="form-control"
+                 [(ngModel)]="porcentajeIva"
+                 (ngModelChange)="calcularTotales()"
+                 min="0" max="100">
+          <span class="input-group-text">%</span>
+        </div>
+        <small class="text-muted">IVA Ecuador: 15%</small>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">Valor IVA</label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input type="text" class="form-control bg-light"
+                 [value]="form.iva | number:'1.2-2'"
+                 readonly>
+        </div>
+      </div>
+
+      <!-- Total resaltado -->
+      <div class="col-12">
+        <div class="alert alert-primary d-flex justify-content-between align-items-center mb-0 py-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-cash-coin fs-4"></i>
+            <span class="fw-semibold fs-6">TOTAL A PAGAR</span>
+          </div>
+          <span class="fw-bold fs-3">
+            $ {{ form.total | number:'1.2-2' }}
+          </span>
+        </div>
+      </div>
+
+    </div><!-- /row -->
+
+    <!-- ───── Botones ───── -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <button type="button" class="btn btn-outline-secondary px-4"
+              (click)="cancelar()">
+        <i class="bi bi-x-circle me-1"></i> Cancelar
+      </button>
+      <button type="button" class="btn px-4"
+              [class.btn-primary]="!modoEdicion"
+              [class.btn-warning]="modoEdicion"
+              (click)="guardar()">
+        <i class="bi me-1"
+           [class.bi-save]="!modoEdicion"
+           [class.bi-arrow-repeat]="modoEdicion"></i>
+        {{ modoEdicion ? 'Actualizar' : 'Guardar Factura' }}
+      </button>
+    </div>
+
+  </div><!-- /card-body -->
+</div>

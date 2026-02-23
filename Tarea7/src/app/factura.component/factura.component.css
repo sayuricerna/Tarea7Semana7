@@ -1,0 +1,21 @@
+.factura-hoja {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  background: #fff;
+}
+
+@media print {
+  body * { visibility: hidden; }
+
+  #zona-impresion,
+  #zona-impresion * { visibility: visible; }
+
+  #zona-impresion {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .no-print { display: none !important; }
+}
