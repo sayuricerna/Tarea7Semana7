@@ -1,0 +1,6 @@
+@Tarea6Semana6_API_HostAddress = http://localhost:5137
+
+GET {{Tarea6Semana6_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
