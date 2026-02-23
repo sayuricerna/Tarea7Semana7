@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\",
+  "WorkspaceRootPath": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4F997328-8D3E-402E-8D9C-938CD2236073}|Tarea6Semana6_API.csproj|c:\\users\\sahil\\source\\repos\\tarea6semana6_api\\models\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F997328-8D3E-402E-8D9C-938CD2236073}|Tarea6Semana6_API.csproj|solutionrelative:models\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E9EBB6F6-6939-4CD1-337D-8E25CBC341F2}|Tarea6Semana6_API.csproj|c:\\users\\sahil\\desktop\\sayuri_cerna\\universidad\\repositorios\\repositorios6\\tarea7semana7\\tarea6semana6_api\\models\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9EBB6F6-6939-4CD1-337D-8E25CBC341F2}|Tarea6Semana6_API.csproj|solutionrelative:models\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F997328-8D3E-402E-8D9C-938CD2236073}|Tarea6Semana6_API.csproj|c:\\users\\sahil\\source\\repos\\tarea6semana6_api\\controllers\\facturacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F997328-8D3E-402E-8D9C-938CD2236073}|Tarea6Semana6_API.csproj|solutionrelative:controllers\\facturacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E9EBB6F6-6939-4CD1-337D-8E25CBC341F2}|Tarea6Semana6_API.csproj|c:\\users\\sahil\\desktop\\sayuri_cerna\\universidad\\repositorios\\repositorios6\\tarea7semana7\\tarea6semana6_api\\controllers\\facturacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9EBB6F6-6939-4CD1-337D-8E25CBC341F2}|Tarea6Semana6_API.csproj|solutionrelative:controllers\\facturacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F997328-8D3E-402E-8D9C-938CD2236073}|Tarea6Semana6_API.csproj|c:\\users\\sahil\\source\\repos\\tarea6semana6_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F997328-8D3E-402E-8D9C-938CD2236073}|Tarea6Semana6_API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E9EBB6F6-6939-4CD1-337D-8E25CBC341F2}|Tarea6Semana6_API.csproj|c:\\users\\sahil\\desktop\\sayuri_cerna\\universidad\\repositorios\\repositorios6\\tarea7semana7\\tarea6semana6_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9EBB6F6-6939-4CD1-337D-8E25CBC341F2}|Tarea6Semana6_API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,37 +28,35 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "FacturaController.cs",
-              "DocumentMoniker": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\Controllers\\FacturaController.cs",
+              "DocumentMoniker": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\Controllers\\FacturaController.cs",
               "RelativeDocumentMoniker": "Controllers\\FacturaController.cs",
-              "ToolTip": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\Controllers\\FacturaController.cs",
+              "ToolTip": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\Controllers\\FacturaController.cs",
               "RelativeToolTip": "Controllers\\FacturaController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T22:37:39.347Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-22T22:37:39.347Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\Program.cs",
+              "ToolTip": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T22:17:19.583Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-22T22:17:19.583Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Factura.cs",
-              "DocumentMoniker": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\Models\\Factura.cs",
+              "DocumentMoniker": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\Models\\Factura.cs",
               "RelativeDocumentMoniker": "Models\\Factura.cs",
-              "ToolTip": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\Models\\Factura.cs",
+              "ToolTip": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\Models\\Factura.cs",
               "RelativeToolTip": "Models\\Factura.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAwBUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAwAoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-22T22:12:54.163Z",
               "EditorCaption": ""

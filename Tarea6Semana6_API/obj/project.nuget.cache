@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aRocmzUYdEE=",
+  "dgSpecHash": "oi+sKeOm0tw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\sahil\\source\\repos\\Tarea6Semana6_API\\Tarea6Semana6_API.csproj",
+  "projectFilePath": "C:\\Users\\sahil\\Desktop\\sayuri_cerna\\universidad\\repositorios\\RepositorioS6\\Tarea7Semana7\\Tarea6Semana6_API\\Tarea6Semana6_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sahil\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\sahil\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",
